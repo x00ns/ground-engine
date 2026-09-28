@@ -1,10 +1,10 @@
 #pragma once
+#define GL_GLEXT_PROTOTYPES
+
 #include "Engine.hpp"
 #include <functional>
 #include <GLFW/glfw3.h>
 #include <GL/glcorearb.h>
-
-#define GL_GLEXT_PROTOTYPES
 
 struct Rect {
     float scaleX, scaleY;
@@ -27,12 +27,11 @@ struct Oval {
 };
 
 struct Line {
-    float x, y;
-    Vec2 pos;
+    Vec2 point_1, point_2;
     Color col;
     //constructor
-    Line(Vec2 position, float X, float Y, Color color = {1.0f, 1.0f, 1.0f, 1.0f}) :
-    pos(position), x(X), y(Y), col(color) {}
+    Line(Vec2 Point_1, Vec2 Point_2, Color color = {1.0f, 1.0f, 1.0f, 1.0f}) :
+    point_1(Point_1), point_2(Point_2), col(color) {}
 };
 
 class Shapes {
@@ -44,8 +43,10 @@ public:
     Shapes(int windowWidth, int windowHeight);
     ~Shapes();
     // create rects
-    void drawRect(Vec2 pos, float scaleX, float scaleY, const Color& color, const std::function<void()>& children);
-    void drawTextureRect(Vec2 pos, float scaleX, float scaleY, const Texture2D& texture, const std::function<void()>& children);
+    void drawRect(const Rect& rect, const std::function<void()>& children);
+    void drawTextureRect(const Rect& rect, const std::function<void()>& children);
     // create ovals
-    void drawOval(Vec2 pos, float scaleX, float scaleY, const Color& color, const std::function<void()>& children);
+    void drawOval(const Oval& oval, const std::function<void()>& children);
+    // draw lines
+    void drawLine(const Line& line);
 };

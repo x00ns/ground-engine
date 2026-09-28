@@ -47,6 +47,10 @@ bool ground::isClosed() {
     return Closed;
 }
 
+void ground::setBackgroundColor(const Color& color) {
+    glClearColor(color.r, color.g, color.b, color.a);
+}
+
 void ground::Update() {
     if (!window) return;
     // clear buffers

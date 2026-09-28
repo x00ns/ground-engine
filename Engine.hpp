@@ -3,7 +3,12 @@
 // vector 2
 struct Vec2 { float x, y; };
 // colors
-struct Color { float r, g, b, a; };
+struct Color {
+    // constructor
+    float r, g, b, a;
+    Color(float r, float g, float b, float a) :
+    r(r), g(g), b(b), a(a) {}
+};
 // texture
 struct Texture2D { unsigned int texture_id = 0; };
 // engine methods
@@ -20,4 +25,5 @@ public:
     void createWindow(int width, int height, const char* title);
     bool isClosed();
     void Update();
+    void setBackgroundColor(const Color& color);
 };

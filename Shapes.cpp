@@ -1,13 +1,23 @@
 #include "Shapes.hpp"
+#include "Colors.hpp"
+#include <GL/glext.h>
 
-void Shapes::drawRect(Vec2 pos, float scaleX, float scaleY, const Color& color, const std::function<void()>& children) {
+void Shapes::drawRect(const Rect& rect, const std::function<void()>& children) {
     if (children) children();
 }
 
-void Shapes::drawTextureRect(Vec2 pos, float scaleX, float scaleY, const Texture2D& texture, const std::function<void()>& children) {
+void Shapes::drawTextureRect(const Rect& rect, const std::function<void()>& children) {
     if (children) children();
 }
 
-void Shapes::drawOval(Vec2 pos, float scaleX, float scaleY, const Color& color, const std::function<void()>& children) {
+void Shapes::drawOval(const Oval& oval, const std::function<void()>& children) {
     if (children) children();
+}
+
+void Shapes::drawLine(const Line& line) {
+    glUseProgram(shaderParam);
+    // set color
+    glUniform4f(glGetUniformLocation(shaderParam, "u_color"), line.col.r, line.col.g, line.col.b, line.col.a);
+    // clear transforms
+    glUniform2f(glGetUniformLocation(shaderParam, "u_translation"), 0.0f, 0.0f);
 }
