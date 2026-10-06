@@ -21,8 +21,8 @@ void Shapes::drawLine(const Line& line) {
     // clear transforms
     glUniform2f(glGetUniformLocation(shaderParam, "u_translation"), 0.0f, 0.0f);
     // create vertices
-    float[] vertices = {
-        line.pos.x, line.pos.y,
-        line.pos.x, line.pos.y
+    float vertices[] = {
+        line.point_1.x, line.point_1.y,
+        line.point_2.x, line.point_2.y
     };
 }
