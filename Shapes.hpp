@@ -3,7 +3,6 @@
 
 #include "Engine.hpp"
 #include <functional>
-#include <GLFW/glfw3.h>
 #include <GL/glcorearb.h>
 
 struct Rect {
