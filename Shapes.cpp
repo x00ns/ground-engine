@@ -1,6 +1,5 @@
 #include "Shapes.hpp"
 #include "Colors.hpp"
-#include <GL/glext.h>
 
 void Shapes::drawRect(const Rect& rect, const std::function<void()>& children) {
     if (children) children();
