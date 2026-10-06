@@ -20,4 +20,9 @@ void Shapes::drawLine(const Line& line) {
     glUniform4f(glGetUniformLocation(shaderParam, "u_color"), line.col.r, line.col.g, line.col.b, line.col.a);
     // clear transforms
     glUniform2f(glGetUniformLocation(shaderParam, "u_translation"), 0.0f, 0.0f);
+    // create vertices
+    float[] vertices = {
+        line.pos.x1, line.pos.y1,
+        line.pos.x2, line.pos.y2
+    };
 }
