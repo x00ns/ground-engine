@@ -28,8 +28,8 @@ void Shapes::drawLine(const Line& line) {
 
     glBindVertexArray(quadVAO);
     glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-    glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices), vertices);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
 
-    glDrawArray(GL_LINE, 0, 2);
+    glDrawArrays(GL_LINES, 0, 2);
     glBindVertexArray(0);
 }
