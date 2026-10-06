@@ -1,5 +1,4 @@
 #pragma once
-#include <GLFW/glfw3.h>
 // vector 2
 struct Vec2 { float x, y; };
 // colors
