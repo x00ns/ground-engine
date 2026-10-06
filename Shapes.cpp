@@ -25,4 +25,11 @@ void Shapes::drawLine(const Line& line) {
         line.point_1.x, line.point_1.y,
         line.point_2.x, line.point_2.y
     };
+
+    glBindVertexArray(quadVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+    glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices), vertices);
+
+    glDrawArray(GL_LINE, 0, 2);
+    glBindVertexArray(0);
 }
