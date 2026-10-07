@@ -37,6 +37,7 @@ class Shapes {
 private:
     unsigned int shaderParam = 0;
     unsigned int quadVAO = 0, quadVBO = 0;
+    unsigned int lineVAO = 0, lineVBO = 0;
 public:
     // constructor & destructor
     Shapes();
