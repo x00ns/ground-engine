@@ -10,11 +10,14 @@ Shapes::Shapes() {
     glBindVertexArray(quadVAO);
     glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
 
-    glBufferData(GL_ARRAY_BUFFER, 6 * 2 * sizeof(float), nullptr, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 6 * 4 * sizeof(float), nullptr, GL_DYNAMIC_DRAW);
     
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
@@ -47,9 +50,14 @@ void Shapes::drawRect(const Rect& rect, const std::function<void()>& children) {
     float x2 = rect.pos.x + rect.scaleX;
     float y2 = rect.pos.y + rect.scaleY;
     
-    float vertices[] = {
-        x1, y1, x2, y1, x1, y2,
-        x1, y2, x2, y1, x2, y2
+   float vertices[] = {
+        x1, y1,  0.0f, 0.0f,
+        x2, y1,  1.0f, 0.0f,
+        x1, y2,  0.0f, 1.0f,
+
+        x1, y2,  0.0f, 1.0f,
+        x2, y1,  1.0f, 0.0f,
+        x2, y2,  1.0f, 1.0f 
     };
 
     glBindVertexArray(quadVAO);
@@ -76,9 +84,14 @@ glUseProgram(shaderParam);
     float x2 = rect.pos.x + rect.scaleX;
     float y2 = rect.pos.y + rect.scaleY;
     
-    float vertices[] = {
-        x1, y1, x2, y1, x1, y2,
-        x1, y2, x2, y1, x2, y2
+   float vertices[] = {
+        x1, y1,  0.0f, 0.0f,
+        x2, y1,  1.0f, 0.0f,
+        x1, y2,  0.0f, 1.0f,
+
+        x1, y2,  0.0f, 1.0f,
+        x2, y1,  1.0f, 0.0f,
+        x2, y2,  1.0f, 1.0f 
     };
 
     glBindVertexArray(quadVAO);
