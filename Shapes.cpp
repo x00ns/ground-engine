@@ -2,6 +2,8 @@
 #include "Colors.hpp"
 
 Shapes::Shapes() {
+    // rect & oval vao, vbo
+    
     glGenVertexArrays(1, &quadVAO);
     glGenBuffers(1, &quadVBO);
     
@@ -9,6 +11,22 @@ Shapes::Shapes() {
     glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
 
     glBufferData(GL_ARRAY_BUFFER, 6 * 2 * sizeof(float), nullptr, GL_DYNAMIC_DRAW);
+    
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+
+    // line vao, vbo
+
+    glGenVertexArrays(1, &lineVAO);
+    glGenBuffers(1, &lineVBO);
+    
+    glBindVertexArray(lineVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, lineVBO);
+
+    glBufferData(GL_ARRAY_BUFFER, 2 * 2 * sizeof(float), nullptr, GL_DYNAMIC_DRAW);
     
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
