@@ -41,7 +41,7 @@ Shapes::Shapes() {
 void Shapes::drawRect(const Rect& rect, const std::function<void()>& children) {
     glUseProgram(shaderParam);
     // off texture
-    glUniform1i(glGetUniformLocation(shaderParam, "u_use_texture"), 1);
+    glUniform1i(glGetUniformLocation(shaderParam, "u_use_texture"), 0);
     // set color
     glUniform4f(glGetUniformLocation(shaderParam, "u_color"), rect.col.r, rect.col.g, rect.col.b, rect.col.a);
     // clear transforms
