@@ -74,8 +74,8 @@ void Shapes::drawRect(const Rect& rect, const std::function<void()>& children) {
 
 void Shapes::drawTextureRect(const Rect& rect, const std::function<void()>& children) {
 glUseProgram(shaderParam);
-    // set color
-    glUniform4f(glGetUniformLocation(shaderParam, "u_color"), rect.col.r, rect.col.g, rect.col.b, rect.col.a);
+    // set texture
+    glUniform1i(glGetUniformLocation(shaderProgram, "u_use_texture"), 1);
     // clear transforms
     glUniform2f(glGetUniformLocation(shaderParam, "u_translation"), 0.0f, 0.0f);
 
@@ -102,6 +102,7 @@ glUseProgram(shaderParam);
     glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
     
     glDrawArrays(GL_TRIANGLES, 0, 6);
+    glBindTexture(GL_TEXTURE_2D, 0);
     glBindBuffer(0);
     glBindVertexArray(0);
     
