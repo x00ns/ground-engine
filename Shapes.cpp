@@ -8,10 +8,13 @@ Shapes::Shapes() {
     glBindVertexArray(quadVAO);
     glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
 
-    glBufferSubData(GL_ARRAY_BUFFER, sizeof(float), nullptr, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 6 * 2 * sizeof(float), nullptr, GL_DYNAMIC_DRAW);
     
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 }
 
 void Shapes::drawRect(const Rect& rect, const std::function<void()>& children) {
@@ -41,7 +44,7 @@ void Shapes::drawLine(const Line& line) {
     glBindVertexArray(quadVAO);
     glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
     
-    glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices), 0, vertices);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
     
     glDrawArrays(GL_LINES, 0, 2);
     glBindBuffer(0);
