@@ -40,6 +40,8 @@ Shapes::Shapes() {
 
 void Shapes::drawRect(const Rect& rect, const std::function<void()>& children) {
     glUseProgram(shaderParam);
+    // off texture
+    glUniform1i(glGetUniformLocation(shaderParam, "u_use_texture"), 1);
     // set color
     glUniform4f(glGetUniformLocation(shaderParam, "u_color"), rect.col.r, rect.col.g, rect.col.b, rect.col.a);
     // clear transforms
@@ -73,9 +75,11 @@ void Shapes::drawRect(const Rect& rect, const std::function<void()>& children) {
 }
 
 void Shapes::drawTextureRect(const Rect& rect, const std::function<void()>& children) {
-glUseProgram(shaderParam);
+    glUseProgram(shaderParam);
     // set texture
-    glUniform1i(glGetUniformLocation(shaderProgram, "u_use_texture"), 1);
+    glUniform1i(glGetUniformLocation(shaderParam, "u_use_texture"), 1);
+    // clear color
+    glUniform4f(glGetUniformLocation(shaderParam, "u_color"), 1.0f, 1.0f, 1.0f, 1.0f);
     // clear transforms
     glUniform2f(glGetUniformLocation(shaderParam, "u_translation"), 0.0f, 0.0f);
 
