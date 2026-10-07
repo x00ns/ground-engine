@@ -65,6 +65,35 @@ void Shapes::drawRect(const Rect& rect, const std::function<void()>& children) {
 }
 
 void Shapes::drawTextureRect(const Rect& rect, const std::function<void()>& children) {
+glUseProgram(shaderParam);
+    // set color
+    glUniform4f(glGetUniformLocation(shaderParam, "u_color"), rect.col.r, rect.col.g, rect.col.b, rect.col.a);
+    // clear transforms
+    glUniform2f(glGetUniformLocation(shaderParam, "u_translation"), 0.0f, 0.0f);
+
+    float x1 = rect.pos.x;
+    float y1 = rect.pos.y;
+    float x2 = rect.pos.x + rect.scaleX;
+    float y2 = rect.pos.y + rect.scaleY;
+    
+    float vertices[] = {
+        x1, y1, x2, y1, x1, y2,
+        x1, y2, x2, y1, x2, y2
+    };
+
+    glBindVertexArray(quadVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+
+    glBindTexture(GL_TEXTURE_2D, rect.texture.texture_id);
+    
+    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+    
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glBindBuffer(0);
+    glBindVertexArray(0);
+    
+    if (children) children();
+    
     if (children) children();
 }
 
@@ -84,8 +113,8 @@ void Shapes::drawLine(const Line& line) {
         line.point_2.x, line.point_2.y
     };
 
-    glBindVertexArray(quadVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+    glBindVertexArray(lineVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, lineVBO);
     
     glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
     
