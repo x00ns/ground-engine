@@ -39,7 +39,7 @@ private:
     unsigned int quadVAO = 0, quadVBO = 0;
 public:
     // constructor & destructor
-    Shapes(int windowWidth, int windowHeight);
+    Shapes();
     ~Shapes();
     // create rects
     void drawRect(const Rect& rect, const std::function<void()>& children);
