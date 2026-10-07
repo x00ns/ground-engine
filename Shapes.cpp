@@ -12,7 +12,7 @@ Shapes::Shapes() {
 
     glBufferData(GL_ARRAY_BUFFER, 6 * 2 * sizeof(float), nullptr, GL_DYNAMIC_DRAW);
     
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -91,8 +91,6 @@ glUseProgram(shaderParam);
     glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindBuffer(0);
     glBindVertexArray(0);
-    
-    if (children) children();
     
     if (children) children();
 }
