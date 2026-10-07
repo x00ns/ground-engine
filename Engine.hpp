@@ -7,7 +7,7 @@ struct Vec2 { float x, y; };
 struct Color {
     // constructor
     float r, g, b, a;
-    Color(float r, float g, float b, float a) :
+    Color(float r = 1.0f, float g = 1.0f, float b = 1.0f, float a = 1.0f) :
     r(r), g(g), b(b), a(a) {}
 };
 // texture
